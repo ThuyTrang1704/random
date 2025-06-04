@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tấm vé may mắn</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .floating-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 15px 25px;
+      font-size: 18px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1000;
+    }
+
+    .floating-button:hover {
+      background-color: #218838;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .slots {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .slot {
+      width: 300px;
+      height: 300px;
+      margin: 0 10px;
+      font-size: 300px;
+      background: #000;
+      color: #0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-family: monospace;
+      box-shadow: inset 0 0 10px #0f0;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎰 TẤM VÉ MAY MẮN</h1>
+    <div class="slots">
+      <div class="slot" id="slot1">0</div>
+      <div class="slot" id="slot2">0</div>
+      <div class="slot" id="slot3">0</div>
+      <div class="slot" id="slot4">0</div>
+    </div>
+    <div class="error" id="error-message"></div>
+  </div>
+
+  <!-- Nút quay cố định ở góc phải dưới -->
+  <button class="floating-button" onclick="startLottery()">Quay!</button>
+
+  <script>
+    function startLottery() {
+      const error = document.getElementById("error-message");
+      const min = 1;
+      const max = 2000;
+
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      const padded = String(randomNumber).padStart(4, "0");
+
+      const slotIds = ["slot1", "slot2", "slot3", "slot4"];
+
+      slotIds.forEach(id => document.getElementById(id).innerText = "0");
+      error.innerText = "";
+
+      slotIds.forEach((slotId, index) => {
+        setTimeout(() => {
+          const slot = document.getElementById(slotId);
+          let interval = setInterval(() => {
+            slot.innerText = Math.floor(Math.random() * 10);
+          }, 100);
+
+          setTimeout(() => {
+            clearInterval(interval);
+            slot.innerText = padded[index];
+          }, 2500);
+        }, index * 2500);
+      });
+    }
+  </script>
+</body>
+</html>

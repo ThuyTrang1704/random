@@ -3,23 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tấm vé may mắn</title>
+  <title>Random</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      text-align: center;
-      padding: 50px 20px;
-    }
+  body {
+  font-family: Arial, sans-serif;
+  background-image: url('nen.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  text-align: center;
+  padding: 50px 20px;
+  margin: 0;
+}
 
-    .container {
-      background: #fff;
-      padding: 100px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      max-width: 100%;
-    }
+
+
+   .container {
+  background: transparent; 
+  padding: 100px;
+  border-radius: 10px;
+  display: inline-block;
+  
+  max-width: 100%;
+}
+
+
 
     h1 {
       font-size: 2rem;
@@ -34,37 +43,35 @@
       margin-top: 20px;
     }
 
-   .slot {
-  width: 200px;
-  height: 300px;
-  font-size: 200px;
-  background: #010101;
-  color: #0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-family: monospace;
-  box-shadow: inset 0 0 10px #0f0;
-}
+    .slot {
+      width: 200px;
+      height: 300px;
+      font-size: 200px;
+      background: rgba(31, 30, 30, 0.6);
+      color: #0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-family: monospace;
+      box-shadow: inset 0 0 10px #0f0;
+    }
 
-@media (min-width: 800px) {
-  .slot {
-    width: 280px;
-    height: 360px;
-    font-size: 240px;
-  }
-}
+    @media (min-width: 800px) {
+      .slot {
+        width: 280px;
+        height: 360px;
+        font-size: 240px;
+      }
+    }
 
-@media (min-width: 1024px) {
-  .slot {
-    width: 320px;
-    height: 400px;
-    font-size: 280px;
-  }
-}
-
-
+    @media (min-width: 1024px) {
+      .slot {
+        width: 320px;
+        height: 400px;
+        font-size: 280px;
+      }
+    }
 
     .floating-button {
       position: fixed;
@@ -93,7 +100,6 @@
 </head>
 <body>
   <div class="container">
-
     <div class="slots">
       <div class="slot" id="slot1">0</div>
       <div class="slot" id="slot2">0</div>

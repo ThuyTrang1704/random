@@ -5,31 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random</title>
   <style>
-  body {
-  font-family: fantasy, sans-serif;
-  background-image: url('25LCK_KV_BG_7.png'); 
-   /* background-color: #FFFFFF; */
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-  text-align: center;
-  padding: 50px 20px;
-  margin: 0;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('random.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: 80%;
+      text-align: center;
+      padding: 50px 20px;
+      margin: 0;
+    }
 
-
-
-   .container {
-  background: transparent; 
-  padding: 100px;
-  border-radius: 10px;
-  display: inline-block;
-  
-  max-width: 100%;
-}
-
-
+    .container {
+      background: transparent;
+      padding: 100px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 100%;
+      margin-left: 490px; /**/
+      margin-top: 100px;/**/
+    }
 
     h1 {
       font-size: 2rem;
@@ -41,36 +37,37 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 0px;
     }
 
     .slot {
-      width: 200px;
-      height: 300px;
-      font-size: 200px;
-      background: rgba(255, 255, 255);
-      color: rgb(0,0,0);
+      width: 120px;
+      height: 120px;
+      font-size: 10px; 
+      background: rgba(31, 30, 30, 0.1);
+      color: rgb(253, 253, 252);
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 10px;
       font-family: fantasy;
       border: 3px solid black;
+
     }
 
     @media (min-width: 800px) {
       .slot {
-        width: 280px;
-        height: 360px;
-        font-size: 240px;
+        width: 140px; 
+        height: 220px; 
+        font-size: 200px; 
       }
     }
 
     @media (min-width: 1024px) {
       .slot {
-        width: 320px;
-        height: 400px;
-        font-size: 280px;
+        width: 140px;
+        height: 200px; 
+        font-size: 200px; 
       }
     }
 
@@ -79,23 +76,32 @@
       bottom: 20px;
       right: 20px;
       padding: 12px 20px;
-      font-size: 16px;
-      background-color: #28a745;
-      color: white;
+      font-size: 10px;
+      background-color: transparent;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       z-index: 1000;
+      margin-left: 10px;
     }
 
     .floating-button:hover {
-      background-color: #218838;
+      background-color: #7f7878;
     }
 
     .error {
       color: red;
       margin-top: 10px;
+    }
+
+    .buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      flex-direction: row;
     }
   </style>
 </head>
@@ -110,7 +116,9 @@
     <div class="error" id="error-message"></div>
   </div>
 
-  <button class="floating-button" onclick="startLottery()">Quay!</button>
+  <div class="buttons">
+    <button class="floating-button" onclick="startLottery()">Quay</button>
+  </div>
 
   <script>
     function startLottery() {
@@ -121,7 +129,6 @@
       const padded = String(randomNumber).padStart(4, "0");
 
       const slotIds = ["slot1", "slot2", "slot3", "slot4"];
-
       slotIds.forEach(id => document.getElementById(id).innerText = "0");
       error.innerText = "";
 
@@ -135,8 +142,32 @@
           setTimeout(() => {
             clearInterval(interval);
             slot.innerText = padded[index];
-          }, 2500);
-        }, index * 2500);
+          }, 5000);
+        }, index * 0);
+      });
+    }
+
+    function spinSingleDigits() {
+      const error = document.getElementById("error-message");
+      const min = 1;
+      const max = 500;
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      const padded = String(randomNumber).padStart(4, "0");
+
+      const slotIds = ["slot1", "slot2", "slot3", "slot4"];
+      error.innerText = "";
+
+      slotIds.forEach((slotId, index) => {
+        const slot = document.getElementById(slotId);
+        let count = 0;
+        let interval = setInterval(() => {
+          slot.innerText = Math.floor(Math.random() * 10);
+          count++;
+          if (count >= 10) {
+            clearInterval(interval);
+            slot.innerText = padded[index];
+          }
+        }, 100);
       });
     }
   </script>

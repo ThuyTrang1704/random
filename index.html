@@ -123,8 +123,8 @@
   <script>
     function startLottery() {
       const error = document.getElementById("error-message");
-      const min = 2;
-      const max = 3786;
+      const min = 1;
+      const max = 300;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       const padded = String(randomNumber).padStart(4, "0");
 
